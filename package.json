@@ -6,14 +6,18 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ../frontend && npm run build && cp -r build ../backend",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
+    "build:ui": "rm -rf build && cd ../frontend && npm run build && cp -r build cp -r build ../../../../fso-phonebook/",
+    "prepare:backend": "rsync -av --progress ../backend/ ../../../../fso-phonebook/ --exclude=node_modules && cd ../../../../fso-phonebook/ && npm install",
+    "deploy:full": "git add . && git commit -m \"full stack app\" && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Danilo Cangucu",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
